@@ -44,7 +44,7 @@ C:\...\code> git clone git@github.com:JSgraphics-uvm/ASLjs.git
 C:\...\code\ASLjs> npm install
 ```
 
-* Run watchify to continously produce browser friendly code
+* Run watchify to continously produce browser friendly code (use Ctrl+C if you want to stop watching.)
 
 ```dos
 C:\...\code\ASLjs> npm start
