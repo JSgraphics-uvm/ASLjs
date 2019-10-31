@@ -36,7 +36,7 @@ Finally I set up the project environment. There are many files and folders in th
 C:\...\code> git clone git@github.com:JSgraphics-uvm/ASLjs.git
 ```
 
-* Install nodejs from its ![WEBSITE](https://nodejs.org/en/download/);
+* Install nodejs from its [WEBSITE](https://nodejs.org/en/download/);
 
 * In the project, install the dependencies and dev-dependencies
 
