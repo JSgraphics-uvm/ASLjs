@@ -61,3 +61,19 @@ C:\...\code\ASLjs> npm start
 * Using P5 code is a little different in this project. First we should construct a function called `sketch`, and pass that to the construction method of p5, and then, p5 will call this function, with the parameter of p5 itself.
 
 * Notice, in P5js Editor, we use many "magical" function or variable, like `mouseX`. Here we cannot do this, we need to explicitly write `p5.mouseX` in the context. I don't know how to hijack the environment like p5.js did, but I think using `p5.mouseX` maybe a good habit to keep things explicit, especially for Javascript beginners. (I thought `map(value, l,u, new_l,new_u)` is a javascript function that day, it turns out to be a P5 function!)
+
+## Dependencies
+
+In `package.json`, we can see there are several `dependencies` and `devDependencies`.
+
+`dependencies` is what we will release to users. Here I'll give a description of what are they and why we need to use them.
+
+* `"@thi.ng/vectors"` This is a package that can do vector calculation. Sida add it and try to use it do some rotation of the hand gesture.
+
+* `p5` This is the P5js package. For visualization. https://p5js.org/
+
+If you want to add more package to `dependencies`, simply find the package name in https://www.npmjs.com/, and use npm to add them.
+
+```dos
+C:\...\code\ASLjs\> npm install --save XXXXXX
+```
