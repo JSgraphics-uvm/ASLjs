@@ -4,7 +4,8 @@
   "description": "American Sign Language Recongition using Leap motion Javascript API",
   "main": "index.js",
   "dependencies": {
-    "@thi.ng/vectors": "^3.3.1"
+    "@thi.ng/vectors": "^3.3.1",
+    "p5": "^0.10.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
