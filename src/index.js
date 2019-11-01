@@ -1,27 +1,22 @@
-import * as v from "@thi.ng/vectors";
-import * as m from "./module";
-import p5 from "p5";
-import Leap from "leapjs";
+import * as core from "./core";
 
-let x = v.add([], [1,2,3], [2,3,4]);
-console.log(x);
-
-console.log("cool");
-
-console.log(m.hello());
-
-let sketch = (p5) => {
-    p5.setup = () => {
-        p5.createCanvas(p5.windowWidth, p5.windowHeight);
-    }
-    p5.draw = () => {
-        p5.ellipse(p5.mouseX,p5.mouseY,100);
-    }
+let another_draw_function = () => {
+    let p5 = core.P5;
+    p5.ellipse(p5.mouseX, p5.mouseY,100);
 }
 
+let p5_draw = () => {
+    if (core.hands !== null) { //leapmotion is initialized.
+        if (core.hands.length >= 1) { //there is/are hand(s) sensored.
+            // draw any thing you want:
+            let p5 = core.P5;
+            let p = core.hands[0].fingers[1].bones[3].nextJoint;
+            p5.ellipse(p[0], p[2], 100);
 
-Leap.loop(function(frame){
-    console.log(frame.hands.length);
-  });
-  
-new p5(sketch);
+        }
+    }
+
+    // or call any function you want:
+    another_draw_function();
+}
+core.init(p5_draw);
