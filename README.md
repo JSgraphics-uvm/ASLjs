@@ -72,6 +72,8 @@ In `package.json`, we can see there are several `dependencies` and `devDependenc
 
 * `p5` This is the P5js package. For visualization. https://p5js.org/
 
+* `leapjs` This is Leap Motion Controller package.
+
 If you want to add more package to `dependencies`, simply find the package name in https://www.npmjs.com/, and use npm to add them.
 
 ```dos

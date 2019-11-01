@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@thi.ng/vectors": "^3.3.1",
+    "leapjs": "^0.6.4",
     "p5": "^0.10.2"
   },
   "devDependencies": {
