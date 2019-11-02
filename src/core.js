@@ -16,7 +16,6 @@ export let init = (callback) => {
             p_p5.createCanvas(p_p5.windowWidth, p_p5.windowHeight);
         }
         p_p5.draw = () => {
-            p_p5.background(0);
             callback();
         }
     }
