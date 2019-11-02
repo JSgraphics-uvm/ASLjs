@@ -50,7 +50,7 @@ C:\...\code\ASLjs> npm install
 C:\...\code\ASLjs> npm start
 ```
 
-* Open a browser and view file `/public/index.html`.
+* Start a webserver and Open a browser and view file `/public/index.html`.
 
 * Finally, you can start to modify code in `/src/`, and refresh the browser, you can see your code is working.
 
@@ -61,6 +61,12 @@ C:\...\code\ASLjs> npm start
 * Using P5 code is a little different in this project. First we should construct a function called `sketch`, and pass that to the construction method of p5, and then, p5 will call this function, with the parameter of p5 itself.
 
 * Notice, in P5js Editor, we use many "magical" function or variable, like `mouseX`. Here we cannot do this, we need to explicitly write `p5.mouseX` in the context. I don't know how to hijack the environment like p5.js did, but I think using `p5.mouseX` maybe a good habit to keep things explicit, especially for Javascript beginners. (I thought `map(value, l,u, new_l,new_u)` is a javascript function that day, it turns out to be a P5 function!)
+
+## Why I need to start a local web server?
+
+Can I just open the `.html` file? Unfortunately, no.
+
+We need to use a model exported in Python to predict the gesture, so in order to read that file, we need a web server and `http` URL. For security reason, browsers don't allow Javascript access local files.
 
 ## Dependencies
 
