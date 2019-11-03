@@ -5,7 +5,7 @@ var classifier = {
     init: function () {
         console.log("loading model...");
         (async () => {
-            this.classifier = await tf.loadLayersModel('../tensorflow_model/model.json');
+            this.classifier = await tf.loadLayersModel('./tensorflow_model/model.json');
             console.log("loaded.");
         })();
     },
