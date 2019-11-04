@@ -8,6 +8,8 @@ American Sign Language Recongition using Leap motion Javascript API
 
 `/public/js` where the compiled js file goes
 
+`/public/js/lib` packages like tensorflow, p5, leapmotion, numjs, etc.
+
 `/public/js/sketch.js` main js for P5js
 
 `/public/index.html` the entry point for browsers

@@ -10,7 +10,6 @@ var classifier = {
         })();
     },
     predict: function (data) {
-        // console.log(hands);
         // input shape [1,5,4,2,3]
         let tensor_data = tf.tensor(data, [1, 120]);
         (async () => {
@@ -113,7 +112,7 @@ var classifier = {
                     }
                 }
             }
-
+            // still use previous points...
             //Step 7. Normalize scale set index finger metacarpal(palm) bone = 1
             let x = points[1].get(0) - points[0].get(0);
             let y = points[1].get(1) - points[0].get(1);
@@ -127,9 +126,6 @@ var classifier = {
             hand = nj.dot(T_scale, hand.reshape(3,-1)).reshape(3,5,4,2);
         }
 
-
-
-        //console.log(std_hand.tolist());
         return [hand.tolist(), hand.selection.data];
     },
     get_key_points: function (hand) {
