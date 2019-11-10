@@ -7,16 +7,48 @@ let debug_msg = [];
 function preload() {
     classifier.init();
     img['vehicle'] = loadImage("images/cursor.png");
+    function loadSanta(action='Walk') {
+        fname = [];
+        for (let i=1;i<=13;i++) {
+            fname.push(`assets/santasprites/png/${action} (${i}).png`);
+        }
+        img[`santa_${action}`] = loadAnimation(...fname);
+        img[`santa_${action}`].frameDelay = 5;
+    }
+    loadSanta('Walk');
+    loadSanta('Idle');
 }
+let sprites = [];
 function setup() {
     createCanvas(windowWidth, windowHeight);
     vehicles.push(new Vehicle());
-    digit_boxes.push(new DigitBox());
+    let box_size = 80;
+    let box = createSprite(0,0,box_size,box_size);
+    box.size = box_size;
+    box.position = createVector(random(windowWidth-2*box_size)+box_size, random(windowHeight-2*box_size)+box_size);
+    box.digit = 0;
+    box.draw = function() { push(); fill(100); rect(0,0,box_size,box_size);         
+        textSize(this.size*0.8);
+        textAlign(CENTER, CENTER);
+        fill(200);
+        text(this.digit, 0, 0);
+        pop(); }
+    digit_boxes.push(box);
+    
+    for (let i=0;i<10;i++) {
+        let sprite = createSprite(0,0,50,50);
+        sprite.friction = random(0.02)+0.01;
+        sprite.position = createVector(random(windowWidth), random(windowHeight));
+        let color = [random(255), random(255), random(255)];
+        sprite.draw = function() { push(); fill(...color); ellipse(0,0,10,10); pop(); }
+        sprites.push(sprite);
+    }
 }
 
 function draw() {
     debug_msg = [];
-    background(0);
+    background(255);
+    animation(img['santa_Idle'], 400, 300);
 
     //the global variable `gesture_digit` will be set in `classifier.predict()` method 
     debug(`digit = ${gesture_digit}`);
@@ -43,7 +75,6 @@ function draw() {
         if (gesture_digit==box.digit) {
             box.reset();
         }
-        box.show();
     }
 
     for (let vehicle of vehicles) {
@@ -57,8 +88,13 @@ function draw() {
         }
         vehicle.iterate( force, stepsize=0.8 );
     }
+    for (let sprite of sprites) {
+        for (let box of digit_boxes) {
+            sprite.attractionPoint(1, box.position.x, box.position.y);
+        }
+    }
 
-
+    drawSprites();
     draw_debug();
 }
 

@@ -146,3 +146,5 @@ var classifier = {
         return;
     }
 }
+
+classifier.init();
