@@ -194,21 +194,29 @@ function draw() {
     draw_virtual_hand();
     
     if (game_over) {
+        push();
         fill('rgba(31.4%,31.4%,31.4%,0.5)');
         rect(world.left(),0,world.width,windowHeight);
         fill(255);
+        strokeWeight(5);
+        stroke(100);
         textFont(digit_font);
         textAlign(CENTER, CENTER);
         textSize(100);
         text("GAME OVER", windowWidth/2, windowHeight/2);
+        pop();
     } else if (game_pause) {
+        push();
         fill('rgba(31.4%,31.4%,31.4%,0.5)');
         rect(world.left(),0,world.width,windowHeight);
         fill(255);
+        strokeWeight(5);
+        stroke(100);
         textFont(digit_font);
         textAlign(CENTER, CENTER);
         textSize(100);
         text("PAUSE", windowWidth/2, windowHeight/2);
+        pop();
     }
 
     btn_restart.draw();
