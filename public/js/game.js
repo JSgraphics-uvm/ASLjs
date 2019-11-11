@@ -29,9 +29,9 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
     slider_speed = createSlider(1, 22, 4, 3);
-    slider_speed.position(130, 10);
+    slider_speed.position(120, 10);
     slider_width = createSlider(2, 9, 9, 1);
-    slider_width.position(130, 50);
+    slider_width.position(120, 50);
 
     boxes = new Group();
     dead_boxes = new Group();
@@ -52,7 +52,7 @@ function setup() {
 
     btn_restart = new Clickable();     //Create button
     btn_restart.text = "Restart Game";
-    btn_restart.locate(300, 20);        //Position Button
+    btn_restart.locate(280, 20);        //Position Button
     btn_restart.onPress = function(){  //When myButton is pressed
         //this.color = "#AAAAFF";       //Change button color
         restart();
