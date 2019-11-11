@@ -14,6 +14,7 @@ let match = 0;
 let match_max = 5;
 let total_score = 0;
 let last_digit = 0;
+let slider_speed = null;
 
 function preload() {
     world = {
@@ -26,6 +27,11 @@ function preload() {
 }
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    slider_speed = createSlider(1, 22, 4, 3);
+    slider_speed.position(130, 10);
+    slider_width = createSlider(2, 11, 10, 1);
+    slider_width.position(130, 50);
 
     boxes = new Group();
     dead_boxes = new Group();
@@ -46,11 +52,12 @@ function setup() {
 
     btn_restart = new Clickable();     //Create button
     btn_restart.text = "Restart Game";
-    btn_restart.locate(20, 20);        //Position Button
+    btn_restart.locate(300, 20);        //Position Button
     btn_restart.onPress = function(){  //When myButton is pressed
         //this.color = "#AAAAFF";       //Change button color
         restart();
     }
+    restart();
 }
 function restart() {
     game_over = false;
@@ -59,6 +66,8 @@ function restart() {
     boxes.clear();
     dead_boxes.removeSprites();
     dead_boxes.clear();
+    initial_speed = slider_speed.value();
+    world.width = slider_width.value() * box_width;
     box_speed=initial_speed;
 }
 
@@ -122,6 +131,9 @@ function pause() {
 
 function draw() {
     background(255);
+    textSize(16);
+    text("Initial Speed:", 10,27);
+    text("World Width:", 10, 67);
     noStroke();
     fill(250);
     rect(world.left(), 0, world.width, windowHeight);
