@@ -30,7 +30,7 @@ function setup() {
 
     slider_speed = createSlider(1, 22, 4, 3);
     slider_speed.position(130, 10);
-    slider_width = createSlider(2, 11, 10, 1);
+    slider_width = createSlider(2, 9, 9, 1);
     slider_width.position(130, 50);
 
     boxes = new Group();
