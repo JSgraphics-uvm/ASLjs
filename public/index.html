@@ -1,33 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/lib/jquery-3.4.1.min.js"></script>
-    <script src="js/lib/tf.min.js"></script>
-    <script src="js/lib/numjs.min.js"></script>
-    <script src="js/lib/leap-0.6.4.min.js"></script>
-    <script src="js/lib/p5.min.js"></script>
-    <script src="js/lib/p5.play.js"></script>
-    <script src="js/lib/p5.clickable.js"></script>
+  <head>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-    <script src="js/core.js"></script>
-    <script src="js/classifier.js"></script>
-    <script src="js/vehicle.js"></script>
-    <script src="js/digit_box.js"></script>
-    <script src="js/game.js"></script>
-    <!--script src="js/sketch.js"></script-->
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA_mvkf8l2jZTkKY0ErMoexy7zSufPrfyA",
+        authDomain: "aslgame-af0ce.firebaseapp.com",
+        databaseURL: "https://aslgame-af0ce.firebaseio.com",
+        projectId: "aslgame-af0ce",
+        storageBucket: "aslgame-af0ce.appspot.com",
+        messagingSenderId: "334959286416",
+        appId: "1:334959286416:web:3005a516891177ede6e015",
+        measurementId: "G-796KT0PEZD"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      var ref = firebase.database().ref();
+      var newkey = ref.child("login").push().key;
+      var updates = {};
+      updates['/login/'+newkey] = {time: Date(Date.now()).toString()};
+      ref.update(updates);
+
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="js/lib/jquery-3.4.1.min.js"></script>
 
     <style>
-    html,body{
-        margin:0;padding:0;                 
-        overflow: hidden; 
-
-    }</style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .center {
+        margin: auto;
+        margin-top: 100px;
+        width: 60%;
+        padding: 10px;
+        text-align: center;
+      }
+      .center {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+      }
+      .center h1 {
+        font-size: 50px;
+      }
+      
+      .button {
+        display:block;
+        float: left;
+        background-size: 40px;
+        background-repeat: no-repeat;
+        background-position: left top ;
+        padding: 10px;
+        padding-right:0;
+        margin: 10px;
+        border: 1px solid gray;
+        background-color: white;
+        text-decoration: none;
+        color: #222;
+        width: 150px;
+      }
+      .button p {
+        display:inline;
+        margin-left: 20px;
+        padding: 15px;
+        overflow: hidden;
+      }
+    </style>
     <title>Document</title>
-</head>
-<body>
-</body>
+  </head>
+  <body>
+    <form action="game.html">
+      <div class="center"><h1>American Sign Language (ASL)<br> Digits Learning</h1></div>
+      <div class="center">Username: &nbsp; <input type="text" name="username" /> &nbsp; <input type="submit" value="Login"></div>
+      <div class="center" style="width:550px;" id="users"></div>
+    </form>
+  </body>
+  <script>
+    firebase.database().ref("userdata").orderByKey().on('child_added', function(snap) {
+      let n = snap.key.charCodeAt(0) % 10;
+      $("#users").append("<a href=\"game.html?username="+snap.key+"\" class=button style=\"background-image: url('assets/animals/"+n+".jpg')\"><p>"+snap.key +"(L"+snap.val().game_level+")"+"</p></a>");
+      
+    });
+  </script>
 </html>
 <!--digit come from http://www.supercoloring.com/coloring-pages/asl-number-9-->
