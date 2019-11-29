@@ -28,8 +28,9 @@ let last_digit = 0;
 let slider_speed = null;
 
 function preload() {
+  this_user.stage = 0;
   world = {
-    width: 10 * box_width,
+    width: 9 * box_width,
     left: function() {
       return (windowWidth - this.width) / 2;
     },
@@ -47,7 +48,7 @@ function setup() {
 
   slider_speed = createSlider(1, 22, 4, 3);
   slider_speed.position(120, 10);
-  slider_width = createSlider(2, 9, 9, 1);
+  slider_width = createSlider(2, 9, 3, 1);
   slider_width.position(120, 50);
 
   boxes = new Group();
@@ -322,7 +323,11 @@ function draw_match_bar() {
 function draw_virtual_hand() {
   if (gesture_digit == -1) {
     if (!game_pause) pause();
-    this_user.stage = 0;
+    if (total_score > 0) {
+      this_user.stage = 2;
+    } else {
+      this_user.stage = 0;
+    }
     my_gesture.visible = false;
   } else {
     if (game_pause) pause();
@@ -379,7 +384,7 @@ function draw_virtual_hand() {
 }
 
 function draw_stage_0_animation() {
-  if (this_user.stage == 0) {
+  if (this_user.stage == 0 || this_user.stage == 2) {
     image(
       hand_guide,
       (width - hand_guide.width) / 2,
@@ -404,11 +409,15 @@ function draw_statistics() {
   push();
   fill(100);
   txt =
-    "Statistics> Time S0:" +
+    "Statistics> Current Stage: " +
+    this_user.stage +
+    "Time S0:" +
     this_user.time_in_stage_0 +
     "s, S1:" +
     this_user.time_in_stage_1 +
-    "s; Level: " +
+    "s, S2: " +
+    this_user.time_in_stage_2 +
+    "; Level: " +
     this_user.game_level +
     "; Need Help: " +
     this_user.need_help;

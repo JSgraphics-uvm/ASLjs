@@ -18,7 +18,7 @@ var ref = firebase.database().ref("userdata/" + username);
 
 var this_user = {
   dbReady: 0,
-  my_key: "9",
+  my_key: "10",
   username: "",
   stage: 0,
   game_level: 0,
@@ -33,6 +33,7 @@ var this_user = {
   number_of_fail_level_3: 0,
   time_in_stage_0: 0,
   time_in_stage_1: 0,
+  time_in_stage_2: 0,
   need_help: 0,
   updateTime: 0
 };
